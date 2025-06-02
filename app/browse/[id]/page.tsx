@@ -1,15 +1,19 @@
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 
-export default async function BookDetailsPage({ params }: { params: { id: string } }) {
-  const { id } = await params;  
-
+export default async function BookDetailsPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await params;
+  
   const book = await prisma.book.findUnique({
     where: { id },
   });
-
+  
   if (!book) return notFound();
-
+  
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">{book.title}</h1>

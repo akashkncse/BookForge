@@ -1,6 +1,6 @@
 import BookCard from '@/components/BookCard';
 import { prisma } from '@/lib/prisma';
-import { Book } from '@prisma/client';
+import { Book } from '@/types/book';
 
 export default async function BookListPage() {
     const books = await prisma.book.findMany();

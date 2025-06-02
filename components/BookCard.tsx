@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { Book } from '@/types/book'
 import Rating from '@/components/Rating';
+import Link from 'next/link';
 
 export default function BookCard({ book }: { book: Book }) {
   return (
@@ -21,7 +22,9 @@ export default function BookCard({ book }: { book: Book }) {
         <p className="text-sm text-gray-500">{book.desc}</p>
         <Rating val={3} />
         <div className="card-actions pt-2">
-          <button className="btn btn-outline btn-sm">Learn More</button>
+          <Link href={`/browse/${book.id}`} passHref>
+            <button className="btn btn-outline btn-sm">Learn More</button>
+          </Link>
           <button
             className="btn btn-primary btn-sm"
             disabled={!book.available}

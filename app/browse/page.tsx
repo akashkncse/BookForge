@@ -1,7 +1,11 @@
 import BookCard from '@/components/BookCard';
-import books from '@/data/books.json';
+import { PrismaClient } from '@prisma/client';
 
-export default function BookListPage() {
+const prisma = new PrismaClient();
+
+export default async function BookListPage() {
+    const books = await prisma.book.findMany();
+
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grids-cols-4 gap-4">
             {books.map((book) => (
